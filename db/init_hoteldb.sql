@@ -5,11 +5,13 @@
  *  接続パスワード：admin123
  */ 
 drop database if exists hoteldb;
-drop user if exists hoteldb_admin@localhost;
+drop user if exists hoteldb_admin;
 create database hoteldb character set utf8;
-grant all privileges on hoteldb.* to 'hoteldb_admin'@'localhost' identified by 'admin123';
+grant all privileges on hoteldb.* to 'hoteldb_admin' identified by 'admin123';
 
 use hoteldb;
+
+drop table if exists hotels;
 
 create table hotels (
   id      integer not null unique auto_increment,
@@ -22,7 +24,7 @@ create table hotels (
 	image   varchar(10) not null,  /* 画像ファイル名：画像ファイルはimgaeディレクトリ内に格納されている */
   Primary Key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+delete form hotels;
 insert into hotels( id, name, price, pref, city, address, memo, image ) values( 1, 'ビジネスホテル大井町', 7000, '東京都', '品川区', '大井 11-11-11', null, '1.png' );
 insert into hotels( id, name, price, pref, city, address, memo, image ) values( 2, 'グレースイン蒲田', 7200, '東京都', '大田区', '蒲田 11-11-11', null, '2.png' );
 insert into hotels( id, name, price, pref, city, address, memo, image ) values( 3, 'ビジネスイン赤坂見附', 9500, '東京都', '港区', '赤坂 11-11-11', null, '3.png' );
